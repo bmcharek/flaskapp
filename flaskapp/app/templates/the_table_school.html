@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+  
+{% block content %}
+<h1> Scholen in de Indische Buurt {{counter}}</h1>
+<table >
+    <tr>
+        <th>  key  </th>
+        <td>  value  </td>
+   </tr>
+{% for row in datafile %}
+{%    for key, value in row.iteritems() %}
+{%  if row['titel'] in data_school%}
+{{row['titel'] }}
+   <tr>
+        <th> {{ key }} </th>
+        <td> {{ value }} </td>
+   </tr>
+   {% endif %}
+{%    endfor %}
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<div>
+<h1>Flask Google Maps Example</h1>
+
+<h2> All schools in Amsterdam </h2>
+<form name="menuform">
+    <select name="menu1">
+        <option value="{{ url_for('the_map') }}">Map Page</option>
+        <option value="{{ url_for('the_map_basisschool') }}">Map Basischolen</option>
+        <option value="{{ url_for('the_map_basisschool_close') }}">Map Basischolen Close</option>
+        <option value="{{ url_for('the_table_basisschool_close') }}">Table Basischolen Close</option>
+    </select>
+<input type="button" name="Submit" value="Go" 
+onClick="top.location.href = this.form.menu1.options[this.form.menu1.selectedIndex].value;
+return false;">
+</form>
+
+<h2>Results: {{counter}}</h2>
+</div>
+{% with map=googlemap_obj("another-map", 52.363190, 4.938290, markers=school.values(), zoom=zoom, style="width:750px;height:750px;")%}    
+            {{map.html}}
+            {{map.js}}
+{% endwith %}
+
+{% endblock %}
